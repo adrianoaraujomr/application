@@ -7,9 +7,10 @@ from tkinter import *
 
 #( )Pass workbook use to data_sheet
 #(X)Deal with Empty list in the prev next of sessions e clients 
-#( )Improve naviagtion putting buttons to the home window
+#(X)Improve naviagtion putting buttons to the home window
 #( )Try as an exe in windows
-#( )Fix prev button for sessions (Can a client do more than one session on the same date ?)
+#(X)Fix prev button for sessions (Can a client do more than one session on the same date ?)(Was calling next)
+#( )Organize the buttons position
 
 ######################################################################################################
 
@@ -99,6 +100,10 @@ def call_sessions(i,w):
 		w.destroy()
 		sessions_window(aux)
 
+def go_home(w):
+	w.destroy()
+	clients_window()
+
 ######################################################################################################
 #Deal with no sessions
 def sessions_window(name):
@@ -112,6 +117,9 @@ def sessions_window(name):
 	window = Tk()
 	window.title("Stickin to the Floor")
 	window.geometry('320x200')
+
+	home_btn = Button(window,text="Home",command=lambda w=window : go_home(w))
+	home_btn.grid(column=2,row=6)
 
 	lll = Label(window,text="              ")
 	lll.grid(column=0,row=0)
@@ -162,6 +170,9 @@ def edit_session_window(nome,line):
 #	wb = load_workbook()
 	ws = find_client(nome)
 
+	home_btn = Button(window,text="Home",command=lambda w=window : go_home(w))
+	home_btn.grid(column=2,row=6)
+
 	lbl_data = Label(window,text="Data",font=("Arial Bold",10))
 	lbl_data.grid(column=0,row=0)
 	txt_data = Entry(window,width=15)
@@ -195,6 +206,8 @@ def edit_session_window(nome,line):
 	btn_save = Button(window,text="Save",command=lambda w=window,nome=nome,line=line,dt=txt_data,rt=txt_rt,vp=txt_vp,fq=txt_fq,obs=txt_obs : save_session(w,nome,line,dt,rt,vp,fq,obs))
 	btn_save.grid(column=1,row=5)
 
+	window.mainloop()
+
 def save_session(w,nome,line,dt,rt,vp,fq,obs):
 	edit_session(nome,line,dt.get(),rt.get(),vp.get(),fq.get(),obs.get("1.0",END))
 	w.destroy()
@@ -207,6 +220,9 @@ def new_session_window(nome):
 	window = Tk()
 	window.title("Them Bones")
 	window.geometry('320x200')
+
+	home_btn = Button(window,text="Home",command=lambda w=window : go_home(w))
+	home_btn.grid(column=2,row=6)
 
 	lbl_data = Label(window,text="Data",font=("Arial Bold",10))
 	lbl_data.grid(column=0,row=0)
@@ -236,6 +252,8 @@ def new_session_window(nome):
 	btn_save = Button(window,text="Save",command=lambda w=window,nome=nome,dt=txt_data,rt=txt_rt,vp=txt_vp,fq=txt_fq,obs=txt_obs:add_new_session(w,nome,dt,rt,vp,fq,obs))
 	btn_save.grid(column=1,row=5)
 
+	window.mainloop()
+
 def add_new_session(w,nome,dt,rt,vp,fq,obs):
 	add_session(nome,dt.get(),rt.get(),vp.get(),fq.get(),obs.get("1.0",END))
 	w.destroy()
@@ -250,6 +268,9 @@ def edit_client_window(name):
 	window = Tk()
 	window.title("Better off")
 	window.geometry('320x200')
+
+	home_btn = Button(window,text="Home",command=lambda w=window : go_home(w))
+	home_btn.grid(column=2,row=6)
 
 	lbl_nome = Label(window,text="Nome : ",font=("Arial Bold",10))
 	lbl_nome.grid(column=0,row=0)
@@ -281,6 +302,9 @@ def new_client_window():
 	window = Tk()
 	window.title("Out of the Black")
 	window.geometry('320x200')
+
+	home_btn = Button(window,text="Home",command=lambda w=window: go_home(w))
+	home_btn.grid(column=2,row=6)
 
 	lbl_nome = Label(window,text="Nome : ",font=("Arial Bold",10))
 	lbl_nome.grid(column=0,row=0)
