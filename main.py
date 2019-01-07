@@ -1,9 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from main_window import *
-from data_sheet import *
-from client import *
-
 
 #GUI Test
 clients_window()

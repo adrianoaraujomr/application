@@ -1,14 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from data_sheet import *
 from client  import *
-from Tkinter import *
+from tkinter import *
 
 
 #( )Pass workbook use to data_sheet
 #(X)Deal with Empty list in the prev next of sessions e clients 
 #( )Improve naviagtion putting buttons to the home window
 #( )Try as an exe in windows
+#( )Fix prev button for sessions (Can a client do more than one session on the same date ?)
 
 ######################################################################################################
 
@@ -132,7 +133,7 @@ def sessions_window(name):
 	nxt_btn = Button(window,text="Next",command=lambda cl=ss,lbl_list=lbl_list : next_page(cl,lbl_list))
 	nxt_btn.grid(column=2,row=5)
 
-	prv_btn = Button(window,text="Prev",command=lambda cl=ss,lbl_list=lbl_list : next_page(cl,lbl_list))
+	prv_btn = Button(window,text="Prev",command=lambda cl=ss,lbl_list=lbl_list : prev_page(cl,lbl_list))
 	prv_btn.grid(column=1,row=5)
 
 	add_btn = Button(window,text="Add Session",command=lambda w=window,name=name : call_new_session(w,name))

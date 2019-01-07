@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import openpyxl as pyxl
 
@@ -51,11 +51,11 @@ def find_client(name):
 	nro_clients = int(mh.cell(row=1,column=2).value) + 1
 	new_sheet = "ws" + str(mh.max_row)
 
-	print "clientes " + str(nro_clients)
+#	print("clientes " + str(nro_clients))
 
 	for i in range(1,nro_clients + 1):
 		aux = mh.cell(row=i,column=2).value
-		print "[" + str(i)  + "] " + str(aux)
+#		print("[" + str(i)  + "] " + str(aux))
 		if cli_identifier == aux:
 			aux = mh.cell(row=i,column=1).value
 			return wb.get_sheet_by_name(aux)
@@ -74,15 +74,15 @@ def find_client_2(wb,name):
 
 	mh = wb.get_sheet_by_name(index)
 	cli_identifier = name.lower()
-	print cli_identifier
+#	print(cli_identifier)
 	nro_clients = int(mh.cell(row=1,column=2).value) + 1
 	new_sheet = "ws" + str(mh.max_row)
 
-	print "clientes " + str(nro_clients)
+#	print("clientes " + str(nro_clients))
 
 	for i in range(1,nro_clients + 1):
 		aux = mh.cell(row=i,column=2).value
-		print "[" + str(i)  + "] " + str(aux)
+#		print("[" + str(i)  + "] " + str(aux))
 		if cli_identifier == aux:
 			aux = mh.cell(row=i,column=1).value
 			return wb.get_sheet_by_name(aux)
@@ -91,7 +91,7 @@ def find_client_2(wb,name):
 	nro_clients += 1
 	mh.cell(row=nro_clients,column=1,value=new_sheet)
 	mh.cell(row=nro_clients,column=2,value=cli_identifier)
-	print "WTF!!!"
+#	print("WTF!!!")
 	wb.create_sheet(new_sheet)
 	ws = wb.get_sheet_by_name(new_sheet)
 	ws.cell(row=1,column=2,value=0)
@@ -158,7 +158,7 @@ def show_all_sessions(wb,cliente):
 	ws = find_client(wb,cliente.nome)
 	for i in range(2,ws.max_row +1):
 		aux = ws.cell(row=i,column=1).value
-		print aux
+#		print(aux)
 
 #Need to change the hash value
 def edit_cliente(original_name,new_name,new_telf):
